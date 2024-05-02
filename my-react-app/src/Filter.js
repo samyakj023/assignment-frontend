@@ -403,31 +403,25 @@ const Filter = () => {
       <input name="colors" type="hidden" value="" />
     </div>
   </div>
+  <div class="profile-sidebar jd-filters-container">
   <div class="MuiBox-root css-j7qwjs">
     <div class="MuiFormControl-root MuiTextField-root css-1upf982">
-      <div
-        class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-formControl css-1d5t4lq"
-      >
+      <div class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-formControl css-1d5t4lq">
         <input
           aria-invalid="false"
-          id=":r1:"
+          id="companyName"
           name="companyName"
           placeholder="Search Company Name"
           type="text"
           class="MuiInputBase-input MuiOutlinedInput-input css-1x5jdmq"
           value=""
         />
-        <fieldset
-          aria-hidden="true"
-          class="MuiOutlinedInput-notchedOutline css-igs3ac"
-        >
-          <legend class="css-ihdtdm">
-            <span class="notranslate">&ZeroWidthSpace;</span>
-          </legend>
-        </fieldset>
+
       </div>
     </div>
   </div>
+</div>
+
 </div>
 
   );
