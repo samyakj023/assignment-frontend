@@ -1,21 +1,11 @@
-import React, { useState, useEffect } from 'react';
-
-const JobCard = ({ job }) => {
-  return (
-    <div className="job-card">
-      <h2>{job.jobRole}</h2>
-      <p>{job.jobDetailsFromCompany}</p>
-      <p>Location: {job.location}</p>
-      {/* Add more job details as needed */}
-    </div>
-  );
-};
+import React, { useState, useEffect, useRef } from 'react';
 
 const MyComponent = () => {
   const [jobDetails, setJobDetails] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [limit, setLimit] = useState(20); // Initial limit
+  const jobDetailsLengthRef = useRef(jobDetails.length);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -24,7 +14,7 @@ const MyComponent = () => {
       myHeaders.append("Content-Type", "application/json");
       const raw = JSON.stringify({
         "limit": limit,
-        "offset": jobDetails.length
+        "offset": jobDetailsLengthRef.current
       });
 
       const requestOptions = {
@@ -45,7 +35,7 @@ const MyComponent = () => {
     };
 
     fetchData();
-  }, [limit, jobDetails.length]);
+  }, [limit]);
 
   const handleScroll = () => {
     const windowHeight = window.innerHeight;
@@ -64,12 +54,22 @@ const MyComponent = () => {
     };
   }, []);
 
+  // Update jobDetailsLengthRef whenever jobDetails changes
+  useEffect(() => {
+    jobDetailsLengthRef.current = jobDetails.length;
+  }, [jobDetails]);
+
   return (
     <div>
       {error && <div>Error: {error.message}</div>}
-      <div className="job-list">
+      <div>
         {jobDetails.map((job, index) => (
-          <JobCard key={index} job={job} />
+          <div key={index}>
+            <h2>{job.jobRole}</h2>
+            <p>{job.jobDetailsFromCompany}</p>
+            <p>Location: {job.location}</p>
+            {/* Add more job details as needed */}
+          </div>
         ))}
         {loading && <div>Loading...</div>}
       </div>
@@ -78,11 +78,3 @@ const MyComponent = () => {
 };
 
 export default MyComponent;
-
-
-
-
-
-
-
-

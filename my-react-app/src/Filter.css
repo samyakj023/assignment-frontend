@@ -1,0 +1,9 @@
+.jd-filters-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    background-color: transparent;
+    padding: 0 20px 20px;
+    background-color: #fff !important;
+}
